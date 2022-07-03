@@ -1,13 +1,14 @@
-FROM node:16-alpine as react-build
-RUN mkdir /app
-WORKDIR /app
-COPY ["package.json", "/app/"]
-COPY ./ /app
-RUN cd /app && npm install
-RUN npm -s run build
+#FROM --platform=linux/amd64 node:16-alpine as react-build
+#RUN mkdir /app
+#WORKDIR /app
+#COPY ["package.json", "/app/"]
+#COPY ./ /app
+#RUN cd /app && npm install
+#RUN npm -s run build
 
 # Stage 2, based on Nginx
-FROM nginx
+FROM --platform=linux/amd64 nginx
 COPY ./conf.d/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=react-build /app/build /usr/share/nginx/html:ro
+#COPY --from=react-build /app/build /usr/share/nginx/html:ro
+COPY ./build /usr/share/nginx/html:ro
 EXPOSE 80
