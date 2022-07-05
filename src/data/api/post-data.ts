@@ -25,11 +25,11 @@ const mockPost:Post = {
 }
 export class PostApi implements PostData {
     answerPost(postId: string, answer: NewPost): Promise<FullPost> {
-        return jjAxios.post<NewPost, FullPost>(`/${postId}/reply`, answer)
+        return jjAxios.post<NewPost, FullPost>(`/${postId}/reply`, { content: answer.text })
     }
 
     createPost(post: NewPost): Promise<Post> {
-        return jjAxios.post<NewPost, Post>("/", post)
+        return jjAxios.post<NewPost, Post>("/", { content: post.text })
     }
 
     getFeedPosts(): Promise<Post[]> {
