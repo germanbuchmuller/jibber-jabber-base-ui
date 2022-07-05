@@ -7,7 +7,7 @@ name: Publish Image
 
 on:
   push:
-    branches: [prod]
+    branches: [dev]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -66,7 +66,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-prod
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-dev
           tags: latest
 
       # Build and push Docker image with Buildx (don't push on PR)
@@ -83,8 +83,9 @@ jobs:
       - name: Pull image on VM
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.DEV_HOST }}
+          username: ${{ secrets.DEV_USERNAME }}
+          password: ${{ secrets.DEV_PASSWORD }}
           key: ${{ secrets.KEY }}
           script: |
             cd JibberJabberCompose
