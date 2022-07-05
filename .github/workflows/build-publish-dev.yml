@@ -85,7 +85,6 @@ jobs:
         with:
           host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.DEV_USERNAME }}
-          password: ${{ secrets.DEV_PASSWORD }}
           key: ${{ secrets.KEY }}
           script: |
             cd JibberJabberCompose
