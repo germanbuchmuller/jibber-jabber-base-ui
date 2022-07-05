@@ -8,7 +8,7 @@
 
 # Stage 2, based on Nginx
 FROM --platform=linux/amd64 nginx
+COPY ./build /usr/share/nginx/html
 COPY ./conf.d/default.conf /etc/nginx/conf.d/default.conf
 #COPY --from=react-build /app/build /usr/share/nginx/html:ro
-COPY ./build /usr/share/nginx/html:ro
 EXPOSE 80
