@@ -11,14 +11,14 @@ const mockUser:User = {
 }
 
 const jjAxiosFollow = axios.create({
-    baseURL: "https://jibberjabber.rellum.com.ar/follow",
+    baseURL: "https://jibberjabber-dev.rellum.com.ar/follow",
     headers: {
         "Content-type": "application/json"
     }
 })
 
 const jjAxiosUser = axios.create({
-    baseURL: "https://jibberjabber.rellum.com.ar/user",
+    baseURL: "https://jibberjabber-dev.rellum.com.ar/user",
     headers: {
         "Content-type": "application/json"
     }

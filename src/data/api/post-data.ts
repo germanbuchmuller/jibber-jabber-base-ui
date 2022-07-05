@@ -4,7 +4,7 @@ import { FullPost, NewPost, Post, PostData } from './../posts';
 import UserService from '../../utils/userService';
 
 const jjAxios = axios.create({
-    baseURL: "https://jibberjabber.rellum.com.ar/post",
+    baseURL: "https://jibberjabber-dev.rellum.com.ar/post",
     headers: {
         "Content-type": "application/json"
     }

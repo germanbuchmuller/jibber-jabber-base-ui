@@ -10,7 +10,7 @@ const keycloak = new Keycloak({
 import Keycloak, {KeycloakError, KeycloakPromise} from 'keycloak-js';
 
 const _kc = new Keycloak({
-    url: "https://jibberjabber.rellum.com.ar/keycloak",
+    url: "https://jibberjabber-dev.rellum.com.ar/keycloak",
     realm: "JibberJabber",
     clientId: "jibberjabber-front",
    });
