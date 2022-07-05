@@ -1,8 +1,10 @@
 import { User } from './../users';
 import axios from 'axios';
 import { FullPost, NewPost, Post, PostData } from './../posts';
+import UserService from '../../utils/userService';
+
 const jjAxios = axios.create({
-    baseURL: "http://localhost:8081",
+    baseURL: "https://jibberjabber.rellum.com.ar/post",
     headers: {
         "Content-type": "application/json"
     }
@@ -23,23 +25,34 @@ const mockPost:Post = {
 }
 export class PostApi implements PostData {
     answerPost(postId: string, answer: NewPost): Promise<FullPost> {
-        return jjAxios.post<NewPost, FullPost>(`${postId}/reply`, ({content: answer.text}))
+        return jjAxios.post<NewPost, FullPost>(`/${postId}/reply`, answer)
     }
 
     createPost(post: NewPost): Promise<Post> {
-        return new Promise(() => mockPost)
+        return jjAxios.post<NewPost, Post>("/", post)
     }
 
     getFeedPosts(): Promise<Post[]> {
-        return new Promise(() => mockPost)
+        return jjAxios.get("/all").then(response => response.data.content);
     }
 
     getFullPostById(id: string): Promise<FullPost | undefined> {
-        return new Promise(() => mockPost)
+        return jjAxios.get(`/details/${id}`).then(response => response.data);
     }
 
     getPostsByUser(userId: string): Promise<Post[]> {
-        return new Promise(() => mockPost)
+        return jjAxios.get(`/${userId}`).then(response => response.data);
     }
 
 }
+
+jjAxios.interceptors.request.use((config) => {
+    if (UserService.isLoggedIn()) {
+        const cb = () => {
+            // @ts-ignore
+            config.headers.Authorization = `Bearer ${UserService.getToken()}`;
+            return Promise.resolve(config);
+        };
+        return UserService.updateToken(cb);
+    }
+});
