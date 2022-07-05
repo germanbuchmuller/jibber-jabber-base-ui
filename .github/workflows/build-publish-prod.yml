@@ -88,6 +88,6 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd JibberJabberCompose
-            sudo docker compose stop ui
-            sudo docker compose pull ui
-            sudo docker compose up -d ui
+            docker compose stop ui
+            docker compose pull ui
+            docker compose up -d ui
