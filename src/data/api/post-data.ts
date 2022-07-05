@@ -41,7 +41,7 @@ export class PostApi implements PostData {
     }
 
     getPostsByUser(userId: string): Promise<Post[]> {
-        return jjAxios.get(`/${userId}`).then(response => response.data);
+        return jjAxios.get(`/${userId}`).then(response => response.data.content);
     }
 
 }
