@@ -26,15 +26,15 @@ const jjAxiosUser = axios.create({
 
 export class UserApi implements UserData {
     getCurrentUser(): Promise<User | undefined> {
-        return jjAxiosUser.get<User, undefined>("/")
+        return jjAxiosUser.get("/").then(response => response.data)
     }
 
     getUserById(userId: string): Promise<User | undefined> {
-        return jjAxiosUser.get<User, undefined>(`/${userId}`)
+        return jjAxiosUser.get(`/${userId}`).then(response => response.data)
     }
 
     isFollowed(userId: string): Promise<boolean | undefined> {
-        return jjAxiosFollow.get(`/${userId}`)
+        return jjAxiosFollow.get(`/${userId}`).then(response => response.data)
     }
 
     toggleFollow(userId: string): Promise<void> {
