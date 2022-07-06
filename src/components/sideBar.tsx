@@ -59,7 +59,7 @@ export const SideBar = ({mobileOpen, onSideBarToggle}: SideBarProps) => {
     <>
       <Toolbar>
         <Typography variant="h6" noWrap component="div" fontFamily="">
-          Jibber Jabber
+          Jibber Jabber Dev
         </Typography>
       </Toolbar>
       <List>
